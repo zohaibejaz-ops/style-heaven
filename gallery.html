@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>THE CLOTHERS | Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav ul li:hover a {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Gallery Header */
+        .gallery-header {
+            text-align: center;
+            margin-top: 120px;
+        }
+
+        .gallery-header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .gallery-header p {
+            font-size: 1.2em;
+            color: #777;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 50px;
+            margin: 0 auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+   <nav>
+        <ul>
+            <li><a href="insert.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+           <li><a href="about.html">About Us</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    
+
+        <!-- Right Side (Search, Cart, Account) -->
+        <ul class="right">
+            <li><input type="text" class="search-bar" placeholder="Search..."></li>
+            <li><a href="cart.php"><i class="icon">&#128722;</i></a></li>
+            <li><i class="icon">&#128276;</i> <!-- Notification Icon --></li>
+            <li><a href="#">Account</a>
+                <ul>
+                    <li><a href="#login">Login</a></li>
+                    <li><a href="#signup">Sign Up</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Gallery Header Section -->
+    <section class="gallery-header">
+        <h1>Our Gallery</h1>
+        <p>Discover our latest collections and styles through visuals</p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <img src="images/myimage1.jpg" style="height:300px;" alt="Gallery Image 1">
+        <img src="images/myimage2.jpg" style="height:300px;" alt="Gallery Image 2">
+        <img src="images/myimage3.jpg" style="height:300px;" alt="Gallery Image 3">
+        <img src="images/myimage4.jpg" style="height:300px;" alt="Gallery Image 4">
+        <img src="images/myimage5.jpg" style="height:300px;" alt="Gallery Image 5">
+        <img src="images/myimage6.jpg" style="height:300px;" alt="Gallery Image 6">
+        <img src="images/myimage7.jpg" style="height:300px;" alt="Gallery Image 7">
+        <img src="images/myimage8.jpg" style="height:300px;" alt="Gallery Image 8">
+        <img src="images/myimage9.jpg" style="height:300px;" alt="Gallery Image 9">
+    </section>
+
+</body>
+
+</html>

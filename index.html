@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop the latest stylish clothing at Style Heaven. Find exclusive designs, premium quality fashion, and affordable prices for men and women.">
+    <meta name="keywords" content="fashion, stylish clothing, trendy outfits, premium quality, affordable clothing, coats, jackets, shirts, t-shirts">
+    <meta name="author" content="STYLE HEAVEN">
+    <title>STYLE HEAVEN | Stylish Clothing Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav ul li:hover a {
+            background-color: #555;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('images/frontimage.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-content .cta {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .hero-content .cta:hover {
+            background-color: #c0392b;
+        }
+
+        /* Featured Products Section */
+        .featured-products {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .featured-products h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .featured-items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .featured-item {
+            flex: 1;
+            margin: 10px;
+            max-width: 30%;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .featured-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .featured-item h3 {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .featured-item p {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Modal for product descriptions */
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h5 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        /* Stock Section - Categorized Products */
+        .stock-category {
+            margin: 40px 0;
+        }
+
+        .stock-category h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .stock-category .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stock-category .col {
+            flex: 1;
+            margin: 10px;
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 40px 50px;
+            margin-top: 40px;
+            color: white;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .footer .footer-links a:hover {
+            color: #e74c3c;
+        }
+
+        .footer .footer-links a.active {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="insert.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+           <li><a href="about.html">About Us</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to STYLE HEAVEN</h1>
+            <p>Your one-stop destination for exclusive, stylish clothing</p>
+            <a href="#featured-products" class="cta">Explore our Collection</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured-products" class="featured-products">
+        <h2>Our Exclusive Collection</h2>
+
+        <!-- Trendy T-Shirts -->
+        <div class="stock-category">
+            <h3>Trendy T-shirts Collection</h3>
+            <div class="featured-items">
+                <!-- Block 1 -->
+                <div class="featured-item" data-toggle="modal" data-target="#tshirtModal1">
+                    <img src="images/stylish graphic tshirt.jpg" alt="Stylish Graphic T-shirt">
+                    <h3>Stylish Graphic T-shirt</h3>
+                    <p>Price: $40</p>
+                </div>
+                <!-- Block 2 -->
+                <div class="featured-item" data-toggle="modal" data-target="#tshirtModal2">
+                    <img src="images/colorful tshirt.jpg" alt="Colorful Abstract T-shirt">
+                    <h3>Colorful Abstract T-shirt</h3>
+                    <p>Price: $45</p>
+                </div>
+                <!-- Block 3 -->
+                <div class="featured-item" data-toggle="modal" data-target="#tshirtModal3">
+                    <img src="images/vintage.jpg" alt="Vintage Style T-shirt">
+                    <h3>Vintage Style T-shirt</h3>
+                    <p>Price: $35</p>
+                </div>
+                <!-- Block 4 -->
+                <div class="featured-item" data-toggle="modal" data-target="#tshirtModal4">
+                    <img src="images/anime.jpg" alt="Anime T-shirt">
+                    <h3>Minimalist T-shirt</h3>
+                    <p>Price: $30</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for T-shirt 1 -->
+        <div class="modal fade" id="tshirtModal1" tabindex="-1" aria-labelledby="tshirtModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tshirtModalLabel">Stylish Graphic T-shirt</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/stylish graphic tshirt.jpg" alt="Stylish Graphic T-shirt">
+                        <p>This is a stylish graphic t-shirt perfect for casual outings. The fabric is soft and breathable, ensuring comfort throughout the day. Get yours now for $40!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for T-shirt 2 -->
+        <div class="modal fade" id="tshirtModal2" tabindex="-1" aria-labelledby="tshirtModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tshirtModalLabel">Colorful Abstract T-shirt</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/colorful tshirt.jpg" alt="Colorful Abstract T-shirt">
+                        <p>This t-shirt has a vibrant abstract print, perfect for those who want to stand out and make a statement. Its high-quality fabric offers comfort, and it's priced at $45.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for T-shirt 3 -->
+        <div class="modal fade" id="tshirtModal3" tabindex="-1" aria-labelledby="tshirtModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tshirtModalLabel">Vintage Style T-shirt</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/vintage.jpg" alt="Vintage Style T-shirt">
+                        <p>This vintage-style t-shirt brings a retro vibe, offering a unique look that can be paired with jeans or shorts. A must-have for those who love classic designs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for T-shirt 4 -->
+        <div class="modal fade" id="tshirtModal4" tabindex="-1" aria-labelledby="tshirtModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tshirtModalLabel">Minimalist T-shirt</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/anime.jpg" alt="Anime T-shirt">
+                        <p>This minimalist t-shirt is perfect for those who appreciate clean, simple designs. It’s comfortable, versatile, and a great addition to any wardrobe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coats Collection -->
+        <div class="stock-category">
+            <h3>Exclusive Coats Collection</h3>
+            <div class="featured-items">
+                <!-- Block 1 -->
+                <div class="featured-item" data-toggle="modal" data-target="#coatModal1">
+                    <img src="images/coat1.jpg" alt="Classic English Coat">
+                    <h3>Classic English Coat</h3>
+                    <p>Price: $120</p>
+                </div>
+                <!-- Block 2 -->
+                <div class="featured-item" data-toggle="modal" data-target="#coatModal2">
+                    <img src="images/coat2.jpg" alt="Woolen Overcoat">
+                    <h3>Woolen Overcoat</h3>
+                    <p>Price: $150</p>
+                </div>
+                <!-- Block 3 -->
+                <div class="featured-item" data-toggle="modal" data-target="#coatModal3">
+                    <img src="images/coat3.jpg" alt="Casual Parka">
+                    <h3>Casual Parka</h3>
+                    <p>Price: $95</p>
+                </div>
+                <!-- Block 4 -->
+                <div class="featured-item" data-toggle="modal" data-target="#coatModal4">
+                    <img src="images/coat4.jpg" alt="Leather Bomber Coat">
+                    <h3>Leather Bomber Coat</h3>
+                    <p>Price: $200</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Coat 1 -->
+        <div class="modal fade" id="coatModal1" tabindex="-1" aria-labelledby="coatModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="coatModalLabel">Classic English Coat</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/coat1.jpg" alt="Classic English Coat">
+                        <p>This timeless English coat is perfect for formal or semi-formal occasions. With its classic design and high-quality wool fabric, it's a must-have for any wardrobe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Coat 2 -->
+        <div class="modal fade" id="coatModal2" tabindex="-1" aria-labelledby="coatModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="coatModalLabel">Woolen Overcoat</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/coat2.jpg" alt="Woolen Overcoat">
+                        <p>This luxurious woolen overcoat is perfect for winter days. It offers warmth and style, making it ideal for cold-weather fashion.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Coat 3 -->
+        <div class="modal fade" id="coatModal3" tabindex="-1" aria-labelledby="coatModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="coatModalLabel">Casual Parka</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/coat3.jpg" alt="Casual Parka">
+                        <p>This casual parka coat is perfect for everyday wear. It's lightweight, comfortable, and great for casual outings during chilly days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Coat 4 -->
+        <div class="modal fade" id="coatModal4" tabindex="-1" aria-labelledby="coatModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="coatModalLabel">Leather Bomber Coat</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/coat4.jpg" alt="Leather Bomber Coat">
+                        <p>Upgrade your wardrobe with this stylish leather bomber coat. Its sleek design adds a modern touch, and the leather material is both durable and fashionable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sports Clothing Collection -->
+        <div class="stock-category">
+            <h3>Sports Clothing Collection</h3>
+            <div class="featured-items">
+                <!-- Block 1 -->
+                <div class="featured-item" data-toggle="modal" data-target="#sportsModal1">
+                    <img src="images/ath1.jpg" alt="Athletic Shorts">
+                    <h3>Athletic Shorts</h3>
+                    <p>Price: $30</p>
+                </div>
+                <!-- Block 2 -->
+                <div class="featured-item" data-toggle="modal" data-target="#sportsModal2">
+                    <img src="images/ath2.jpg" alt="Running Shoes">
+                    <h3>Running Shoes</h3>
+                    <p>Price: $70</p>
+                </div>
+                <!-- Block 3 -->
+                <div class="featured-item" data-toggle="modal" data-target="#sportsModal3">
+                    <img src="images/ath3.jpg" alt="Sports Hoodie">
+                    <h3>Sports Hoodie</h3>
+                    <p>Price: $60</p>
+                </div>
+                <!-- Block 4 -->
+                <div class="featured-item" data-toggle="modal" data-target="#sportsModal4">
+                    <img src="images/ath4.jpg" alt="Sweatpants">
+                    <h3>Sweatpants</h3>
+                    <p>Price: $40</p>
+                </div>
+                <!-- Block 5 -->
+                <div class="featured-item" data-toggle="modal" data-target="#sportsModal5">
+                    <img src="images/ath5.jpg" alt="Sports Jacket">
+                    <h3>Sports Jacket</h3>
+                    <p>Price: $85</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Sports Item 1 -->
+        <div class="modal fade" id="sportsModal1" tabindex="-1" aria-labelledby="sportsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sportsModalLabel">Athletic Shorts</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/ath1.jpg" alt="Athletic Shorts">
+                        <p>Stay comfortable during your workouts with these athletic shorts. Made from breathable fabric, they're perfect for running, training, and more!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Sports Item 2 -->
+        <div class="modal fade" id="sportsModal2" tabindex="-1" aria-labelledby="sportsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sportsModalLabel">Running Shoes</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/ath2.jpg" alt="Running Shoes">
+                        <p>These running shoes offer great support and cushioning for all your athletic needs. Whether you're running or training, these shoes provide ultimate comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Sports Item 3 -->
+        <div class="modal fade" id="sportsModal3" tabindex="-1" aria-labelledby="sportsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sportsModalLabel">Sports Hoodie</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/ath3.jpg" alt="Sports Hoodie">
+                        <p>This sports hoodie is perfect for warming up or lounging around. Its soft material and stylish design make it a must-have in any athlete's wardrobe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Sports Item 4 -->
+        <div class="modal fade" id="sportsModal4" tabindex="-1" aria-labelledby="sportsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sportsModalLabel">Sweatpants</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/ath4.jpg" alt="Sweatpants">
+                        <p>These sweatpants are designed for ultimate comfort. Perfect for casual wear or light exercise, they're a must-have for your sports wardrobe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Sports Item 5 -->
+        <div class="modal fade" id="sportsModal5" tabindex="-1" aria-labelledby="sportsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sportsModalLabel">Sports Jacket</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img src="images/ath5.jpg" alt="Sports Jacket">
+                        <p>This lightweight sports jacket is perfect for outdoor activities. With its breathable fabric and sleek design, it's a great addition to your activewear collection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 STYLE HEAVEN</p>
+        <div class="footer-links">
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+    </footer>
+</body>
+
+</html>
